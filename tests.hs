@@ -9,7 +9,8 @@ import System.Random
 import Test.QuickCheck
 import Text.Printf
 
-import Util
+import Utils
+import PowerMethod
 
 compare :: (Eq a, Show a) => a -> a -> Property
 compare ans ref = printTestCase message (ref==ans)

@@ -4,7 +4,8 @@ import Data.List
 import Numeric.LinearAlgebra
 import System.Random
 
-import Util
+import Utils
+import PowerMethod
 
 main :: IO ()
 main = do

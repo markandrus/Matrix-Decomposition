@@ -1,31 +1,16 @@
-{-# LANGUAGE FlexibleContexts #-}
+module PowerMethod (powerMethod) where
 
-module Util
-  ( isSymmetric
-  , powerMethod
-  ) where
-
-import Control.Monad
-import Data.List
 import Numeric.LinearAlgebra
 import System.Random
 import Debug.Trace
 
-isSymmetric :: (Element a, Eq a) => Matrix a -> Bool
-isSymmetric a = toLists a == toLists (trans a)
-
-vNormalize :: Vector Double -> Vector Double
-vNormalize v = recip (norm2 v) `scale` v
-
-mNormalize :: Matrix Double -> Matrix Double
-mNormalize m = recip (det m) `scale` m
+import Utils
 
 -- |powerIterations takes a seed for a random vector and an array, and returns a (hopefully)
 --  convergent list of `r` vectors zipped with their residuals using the power method; we want `r`
 --  to converge to the first eigenvector of the array
 powerIterations
   :: Int -> Matrix Double -> [(Vector Double, Double)]
-{-# NOINLINE powerIterations #-}
 powerIterations seed arr =
   -- NOTE: that `rows arr == cols arr`
   let r = (fromList . take (rows arr) $ repeat 1) `add` (randomVector seed Uniform $ rows arr)
@@ -46,6 +31,10 @@ powerIterations seed arr =
 --  to compute `lambda`), a precision parameter `epsilon`, a random seed for `powerIterations` and
 --  an array; NOTE: the array should already have eigenvectors 1 through `i` zeroed out
 eigVecAndVal :: Int -> Int -> Double -> Matrix Double -> (Vector Double, Double)
+-- NOTE: since we implement no checks as to whether the matrix passed in is actually decomposible,
+--       i.e., whether or not `r` will converge to the dominant eigenvector, `eigVecAndVal`
+--       occasionally stalls calling `powerIterations`--at which point it may be useful to
+--       uncomment the following line to enable visual inspection of the matrix
 {-eigVecAndVal seed i epsilon arr
   | trace ("eigVecAndVal " ++ show seed ++ " " ++ show i ++ " " ++ show epsilon ++ " " ++ show arr)
       False = undefined-}

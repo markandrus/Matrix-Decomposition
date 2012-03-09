@@ -1,13 +1,25 @@
-all: main tests
+# Makefile for Homework 6
+# by Mark <andrus@uchicago.edu>
 
-main: main.hs util.hs
-	# We must refer to iconv in /usr/lib
-	ghc -L/usr/lib main.hs -o main -fno-cse
+ghc = ghc
+flags = -O2
 
-tests: tests.hs util.hs
-	ghc -L/usr/lib -O2 tests.hs -o tests
+# NOTE: the following hack is a consequence of GHC for OS X being compiled against the libiconv in
+# `/usr/lib`
+extra_libs = -L/usr/lib
+
+bins = main tests
+deps = Utils.hs
+
+all: $(bins)
+
+main: Main.hs $(deps)
+	$(ghc) $(extra_libs) $(flags) $< -o $@
+
+tests: tests.hs $(deps)
+	$(ghc) $(extra_libs) $(flags) $< -o $@
 
 .PHONY: all clean
 
 clean:
-	rm -f *.hi *.o main tests
+	rm -f *.hi *.o $(bins)
