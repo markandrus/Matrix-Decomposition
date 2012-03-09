@@ -1,25 +1,27 @@
-{-# LANGUAGE TypeOperators #-}
+module Main where
 
-import Data.Array.Repa hiding ((++))
-import Data.Array.Repa.Algorithms.Randomish
+import Data.List
+import Numeric.LinearAlgebra
+import System.Random
 
-transpose2D a = backpermute (swap e) swap a
-  where
-    e = extent a
-    swap (Z :. i :. j) = Z :. j :. i
-
-mult a@(Array (Z :. p :. _) _) b@(Array (Z :. q :. _) _) =
-    Data.Array.Repa.sum (Data.Array.Repa.zipWith (*) a' b')
-  where
-    a' = extend (Z :. All :. q   :. All) a
-    b' = extend (Z :. p   :. All :. All) $ transpose2D b
-
-mId2D :: DIM2 -> Array DIM2 Float
-mId2D sh@(Z :. i :. j) = fromFunction sh (\(Z :. i :. j) -> if i==j then 1 else 0)
+import Util
 
 main :: IO ()
 main = do
-  let (p,q,r)=(3,3,3)
-  let a = mId2D (Z :. p :. q)
-  let b = mId2D (Z :. q :. r)
-  putStrLn . show $ mult a b
+  g_0 <- newStdGen
+  let (seed,g) = next g_0
+      epsilon = 0.000125
+      n = 10
+      arr_0 = reshape n $ randomVector seed Uniform (n*n)
+      arr = arr_0 <> (trans arr_0)
+      -- arr = ident n
+      -- arr = reshape 3 $ fromList [1, 3, (-3), (-3), 7, (-3), (-6), 6, (-2)]
+      (lambda, v) = powerMethod g epsilon (arr)
+  putStrLn "powerMethod..."
+  print arr
+  print lambda
+  print v
+  putStrLn "eigSH..."
+  let (lambda', v') = eigSH arr
+  print lambda'
+  print v'
