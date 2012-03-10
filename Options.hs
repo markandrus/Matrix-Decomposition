@@ -17,6 +17,7 @@ data Options = Options
   , optDoPowerMethod :: Bool
   , optDoSVD :: Bool
   , optDoRecombine :: Bool
+  , optTestTruncation :: Bool
   , optFilePath :: FilePath
   }
 
@@ -27,6 +28,7 @@ defaultOptions = Options
   , optDoPowerMethod = False
   , optDoSVD = False
   , optDoRecombine = False
+  , optTestTruncation = False
   , optFilePath = ""
   }
 
@@ -41,7 +43,7 @@ options =
     (ReqArg
       (\arg opt -> return opt { optEpsilon = read arg :: Double })
       "DOUBLE")
-    "Precision parameter `epsilon`"
+    "Precision parameter"
   , Option "P" ["power-method"]
     (NoArg
       (\opt -> return opt { optDoPowerMethod = True }))
@@ -53,7 +55,12 @@ options =
   , Option "R" ["recombine"]
     (NoArg
       (\opt -> return opt { optDoRecombine = True }))
-    "Compute the Frobenius norm of the difference between the 2D matrix and its reconstruction"
+    "Compute the Frobenius norm of the difference between the 2D matrix and its reconstructions"
+  , Option "T" ["test-truncation"]
+    (NoArg
+      (\opt -> return opt { optTestTruncation = True }))
+    ("Compute the Frobenius norms of the differences between the 2D matrix and its reconstructions"
+     ++ " from truncated singular values")
   , Option "v" ["verbose"]
     (NoArg
       (\opt -> return opt { optVerbose = True }))

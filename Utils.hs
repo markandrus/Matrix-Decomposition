@@ -8,6 +8,8 @@ module Utils
   , fromDiag
   , fromDecomposition
   , fromSVD
+  , fromSVD'
+  , frobNorm
   ) where
 
 import Numeric.LinearAlgebra
@@ -31,3 +33,9 @@ fromDecomposition (bigLambda, bigV) = bigV <> (fromDiag bigLambda) <> (trans big
 
 fromSVD :: (Matrix Double, Vector Double, Matrix Double) -> Matrix Double
 fromSVD (bigU, bigS, bigV) = bigU <> (fromDiag bigS) <> (trans bigV)
+
+fromSVD' :: (Matrix Double, Matrix Double, Matrix Double) -> Matrix Double
+fromSVD' (bigU, bigS, bigV) = bigU <> bigS <> (trans bigV)
+
+frobNorm :: Matrix Double -> Double
+frobNorm m = norm2 . flatten $ m
