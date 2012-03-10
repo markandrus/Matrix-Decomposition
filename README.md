@@ -1,6 +1,7 @@
 Matrix Decomposition
 ====================
 This source repository contains my solutions to Homework 6, consisting of the three programs
+
 1. `main`
 2. `tests` 
 3. `lsa`
@@ -36,3 +37,13 @@ My SVD implementation also relies on eigendecomposition to compute `A = U S V^T`
 		-T         --test-truncation     Compute the Frobenius norms of the differences between the 2D matrix and its reconstructions from truncated singular values
 		-v         --verbose             Enable verbose messages
 		-h         --help                Show help
+
+Executing `./main -v -P -S -R -T path/to/A.txt`, where `A.txt` is a 2D ASCII representation of the real-valued matrix `A`, will generate a report demonstrating
+
+1. Eigenvector decomposition of the input matrix, `A`, including
+	* Reconstruction of `A'` from `V \Lambda V^T`
+	* The Frobenius norm of `A - A'`
+2. Singular value decomposition of the input matrix, `A`, including
+	* Reconstruction of `A'` from `U S V^T`
+	* The Frobenius norm of `A - A'`
+3. The Frobenius norm of a 10 by 20 random matrix `B` minus its recomposition `U S_i V^T`, where `S_i` is a diagonal matrix with all but the first `i` singular values truncated
