@@ -126,4 +126,4 @@ main = do
               f = frobNorm $ arr `sub` arr'
           printf (" %d,\t%." ++ show decimalPlaces ++ "e\n") (dim s) f
         )
-    ) 
+    )
