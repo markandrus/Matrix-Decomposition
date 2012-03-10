@@ -51,9 +51,9 @@ Executing `./main -v -P -S -R -T path/to/A.txt`, where `A.txt` is a 2D ASCII rep
 
 Results from Truncating Singular Values
 ----------------------------------------
-The following table shows the Frobenius norms of the differences between the 2D matrix and its reconstructions from truncated singular values
+The following table shows the Frobenius norms of the differences (`d`) between the 2D matrix and its reconstructions from `i` singular values
 
-| i   | Diff			|
+| `i` | `d`       |
 | --- | --------- |
 |  1  | 3.793e0   |
 |  2  | 3.249e0   |
