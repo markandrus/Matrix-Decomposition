@@ -49,7 +49,7 @@ prop_powMeth_eigVals_ex1 seed
         gen = mkStdGen seed
         (lambda, v) = powerMethod gen epsilon arr
         lambda' = toList lambda
-        trueLambda = take n $ repeat 1 :: [Double]
+        trueLambda = replicate n 1 :: [Double]
         comparison = zipWith (-) lambda' trueLambda
     in  ( if not $ all (\e -> abs e < (10 * epsilon)) comparison
           then lambda' `compare` trueLambda
@@ -85,7 +85,7 @@ prop_powMeth_eigVals_ex3 seed
         gen = mkStdGen seed
         n = 1 + abs seed `mod` 15
         t = reshape n $ randomVector seed Uniform (n*n)
-        arr = t <> (trans t)
+        arr = t <> trans t
         (lambda, v) = powerMethod gen (0.1 * epsilon) arr
         lambda' = toList lambda
         (trueLambda, _) = eigSH arr

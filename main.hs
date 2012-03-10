@@ -117,7 +117,7 @@ main = do
           "\n\nComputing the Frobenius norm of the difference between A and reconstructions "
        ++ "from truncated values of S\n")
       -- Compute the norm for truncated values of S
-      let truncations = map (fromList) . tail . inits $ toList bigS
+      let truncations = map fromList . tail . inits $ toList bigS
       let n = dim bigS
       putStrLn "# Number of singular values, | A - A' |"
       forM_ truncations (\s -> do
