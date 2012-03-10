@@ -53,18 +53,18 @@ Results from Truncating Singular Values
 ----------------------------------------
 The following table shows the Frobenius norms of the differences between the 2D matrix and its reconstructions from truncated singular values
 
-First `i` singular values | Frobenius norm of `| A - A' |`
---------------------------|---------
-                       1  | 3.793e0
-                       2  | 3.249e0
-                       3  | 2.869e0
-                       4  | 2.484e0
-                       5  | 2.106e0
-                       6  | 1.651e0
-                       7  | 1.196e0
-                       8  | 9.026e-1
-                       9  | 5.626e-1
-                       10 | 5.920e-4
+| First `i` singular values | Frobenius norm of `| A - A' |`
+============================|===============================
+|                        1  | 3.793e0
+|                        2  | 3.249e0
+|                        3  | 2.869e0
+|                        4  | 2.484e0
+|                        5  | 2.106e0
+|                        6  | 1.651e0
+|                        7  | 1.196e0
+|                        8  | 9.026e-1
+|                        9  | 5.626e-1
+|                        10 | 5.920e-4
 
 Tests
 -----
