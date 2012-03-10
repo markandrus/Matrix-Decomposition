@@ -49,8 +49,7 @@ Executing `./main -v -P -S -R -T path/to/A.txt`, where `A.txt` is a 2D ASCII rep
 	* The Frobenius norm of the difference between the input matrix and its reconstruction (enabled with `-R`)
 3. The Frobenius norm of a 10 by 20 random matrix minus its recomposition, `U S_i V^T`--where `S_i` is a diagonal matrix with all but the first `i` singular values truncated (enabled with `-T`)
 
-Results from Truncating Singular Values
-----------------------------------------
+### Results from Truncating Singular Values
 The following table shows the Frobenius norms of the differences (`d`) between the 2D matrix and its reconstructions from `i` singular values
 
 | `i` | `d`       |
