@@ -6,6 +6,8 @@ This source repository contains my solutions to Homework 6, consisting of the th
 2. `tests` 
 3. `lsa`
 
+`sample-output.txt` shows the kind of output you should expect from running `./main -v -P -S -R -T`.
+
 Building
 --------
 All three programs are written in Haskell and rely on GHC and a number of Cabal packages.
