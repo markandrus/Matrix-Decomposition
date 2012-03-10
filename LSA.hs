@@ -6,6 +6,7 @@ import System.Environment
 import System.Exit
 import System.IO
 import System.Random
+import Text.CSV
 
 data Options = Options
   { optVerbose :: Bool
@@ -69,4 +70,5 @@ main = do
       vDisp = putStr . vecdisp (disps decimalPlaces)
   -- Create a random number generator
   gen <- newStdGen
+  csv <- parseCSVFromFile "reprocessed.csv"
   putStrLn "Done."
