@@ -5,10 +5,10 @@ module Options
   , parseOptions
   ) where
 
+import System.Console.GetOpt
 import System.Environment
 import System.Exit
 import System.IO
-import System.Console.GetOpt
 
 data Options = Options
   { optVerbose :: Bool

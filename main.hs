@@ -29,7 +29,7 @@ main = do
       -- Setup matrix and vector display functins
       mDisp = putStr . disps decimalPlaces
       vDisp = putStr . vecdisp (disps decimalPlaces)
-      -- Create a random number generator
+  -- Create a random number generator
   gen <- newStdGen
   -- Read input matrix
   when (verbose && (doPowerMethod || doSVD))

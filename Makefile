@@ -8,10 +8,13 @@ flags = -O2
 # `/usr/lib`
 extra_libs = -L/usr/lib
 
-bins = main tests
+bins = lsa main tests
 deps = Options.hs PowerMethod.hs SVD.hs Utils.hs
 
 all: $(bins)
+
+lsa: LSA.hs $(deps)
+	$(ghc) $(extra_libs) $(flags) $< -o $@
 
 main: Main.hs $(deps)
 	$(ghc) $(extra_libs) $(flags) $< -o $@
