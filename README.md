@@ -40,10 +40,10 @@ My SVD implementation also relies on eigendecomposition to compute `A = U S V^T`
 
 Executing `./main -v -P -S -R -T path/to/A.txt`, where `A.txt` is a 2D ASCII representation of the real-valued matrix `A`, will generate a report demonstrating
 
-1. Eigenvector decomposition of the input matrix, `A`, including
-	* Reconstruction of `A'` from `V \Lambda V^T`
-	* The Frobenius norm of `A - A'`
-2. Singular value decomposition of the input matrix, `A`, including
-	* Reconstruction of `A'` from `U S V^T`
-	* The Frobenius norm of `A - A'`
-3. The Frobenius norm of a 10 by 20 random matrix `B` minus its recomposition `U S_i V^T`, where `S_i` is a diagonal matrix with all but the first `i` singular values truncated
+1. Eigenvector decomposition of the input matrix, `A`, including (enabled with `-P`)
+	* Reconstruction of `A'` from `V \Lambda V^T` (enabled with `-R`)
+	* The Frobenius norm of the difference between the input matrix and its reconstruction (enabled with `-R`)
+2. Singular value decomposition of the input matrix, `A`, including (enabled with `-S`)
+	* Reconstruction of `A'` from `U S V^T` (enabled with `-R`)
+	* The Frobenius norm of the difference between the input matrix and its reconstruction (enabled with `-R`)
+3. The Frobenius norm of a 10 by 20 random matrix minus its recomposition, `U S_i V^T`--where `S_i` is a diagonal matrix with all but the first `i` singular values truncated (enabled with `-T`)
