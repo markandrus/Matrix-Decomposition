@@ -19,7 +19,7 @@ lsa: LSA.hs $(deps)
 main: Main.hs $(deps)
 	$(ghc) $(extra_libs) $(flags) $< -o $@
 
-tests: tests.hs $(deps)
+tests: Tests.hs $(deps)
 	$(ghc) $(extra_libs) $(flags) $< -o $@
 
 .PHONY: all clean
