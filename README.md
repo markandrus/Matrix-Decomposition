@@ -14,6 +14,7 @@ The included `Makefile` handles compilation, and the three binaries may be built
 
 ### Package Requirements
 If `make` fails, it is probably because you are missing a cabal package. These programs rely on [HMatrix](https://github.com/AlbertoRuiz/hmatrix), which can be installed with the included `setup.sh` script, or with the command `cabal install hmatrix`.
+
 * HMatrix
 * QuickCheck
 
