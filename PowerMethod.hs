@@ -13,7 +13,7 @@ powerIterations
   :: Int -> Matrix Double -> [(Vector Double, Double)]
 powerIterations seed arr =
   -- NOTE: that `rows arr == cols arr`
-  let r = (fromList . take (rows arr) $ repeat 1) `add` (randomVector seed Uniform $ rows arr)
+  let r = (fromList . take (rows arr) $ repeat 1) `add` randomVector seed Uniform (rows arr)
       -- Here we construct an infinite list of applications of
       --
       --    r \leftarrow \frac{ Ar } { ||Ar|| }
@@ -30,7 +30,7 @@ powerIterations seed arr =
 -- |eigVecAndVal takes an Int `i` representing which eigenvalue we are looking for (`i` is used
 --  to compute `lambda`), a precision parameter `epsilon`, a random seed for `powerIterations` and
 --  an array; NOTE: the array should already have eigenvectors 1 through `i` zeroed out
-eigVecAndVal :: Int -> Int -> Double -> Matrix Double -> (Vector Double, Double)
+eigVecAndVal :: Int -> Int -> Epsilon -> Matrix Double -> (Vector Double, Double)
 -- NOTE: since we implement no checks as to whether the matrix passed in is actually decomposible,
 --       i.e., whether or not `r` will converge to the dominant eigenvector, `eigVecAndVal`
 --       occasionally stalls calling `powerIterations`--at which point it may be useful to
@@ -57,13 +57,13 @@ eigVecAndVal seed i epsilon arr =
 -- |powerMethod takes a gen to compute random vectors, a precision parameter `epsion`, and an NxN
 --  matrix and computes the decomposition
 --
---      Av_i = V \Lambda V^T = \lambda_i v_i
+--      A = V \Lambda V^T
 --
 --  powerMethod returns $(V, \Lambda)$
 --
 --  NOTE: the output resembles that of HMatrix's built-in `eigSH` for easy checking
 powerMethod
-  :: StdGen -> Double -> Matrix Double -> (Vector Double, Matrix Double)
+  :: StdGen -> Epsilon -> Matrix Double -> (Vector Double, Matrix Double)
 powerMethod g epsilon arr =
   -- NOTE: that `rows arr == cols arr`
   let is = [1..cols arr]

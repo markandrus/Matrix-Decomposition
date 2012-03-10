@@ -9,7 +9,7 @@ flags = -O2
 extra_libs = -L/usr/lib
 
 bins = main tests
-deps = Utils.hs
+deps = Options.hs PowerMethod.hs SVD.hs Utils.hs
 
 all: $(bins)
 
