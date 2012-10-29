@@ -84,6 +84,3 @@ Examples 1 through 3 in `Tests.hs` confirm that
 1. The the N eigenvalues of an N by N identity matrix are all 1
 2. That the eigenvalues computed for a small, 2 by 2 matrix match those expected (within `epsilon`)
 3. That the eigenvalues computed by `powerMethod` for an arbitrary square matrix match those computed by `eigSH` (within `epsilon`)
-
-Latent Semantic Analysis
-------------------------
